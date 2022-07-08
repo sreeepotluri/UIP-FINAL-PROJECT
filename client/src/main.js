@@ -1,6 +1,6 @@
 export async function fetchData(route='', data={}, methodType) {
     
-    const response = await fetch(`http://localhost:3001${route}`, {
+    const response = await fetch(`https://screedsocialmedia.herokuapp.com${route}`, {
       method: methodType, // *GET, POST, PUT, DELETE etc.
       headers: {
         'Content-Type': 'application/json'
