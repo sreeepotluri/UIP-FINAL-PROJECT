@@ -1,3 +1,4 @@
+[SOCIO.FACTS.ERD (1).pdf](https://github.com/sreeepotluri/Social-media-app/files/9072566/SOCIO.FACTS.ERD.1.pdf)
 USER INTERFACE-PROJECT
 
 INTRODUCTION: This project pertains to "SOCIAL MEDIA" site and it's title is "SOCIO FACTS" which is a social media app. This allows user to register and then login to the website and post images, videos, send messages and follow other users and comment on their posts and pictures and videos. At first, user needs to register by entering their details like firstname, lastname, emailid, username and password and then by entering the same username and password user logins to website. After loggingin, user can post images and videos. Another task is, user sends a follow request to other follower who has account over same website or app and other user accepts request. Eventually, both users are followers for each and sends messages to each and posts images, videos and comments on them and also can create groups just like Whatsapp, Facebbok, Instagram and Twitter.
@@ -9,4 +10,4 @@ INSTALLATIONS: Need to install NODEMON, HEROKU, MYSQL for this website. HEROKU C
 ENTITIES: Entities in this website are USER ,MESSAGES, POSTS and GROUPS. Each and every entity is associated with other and all are connected to one other and described graphically in ENTITY RELATIONSHIP DIAGRAM(ERD) in which others can view entities and their attributes and relationships between those entities.
 
 ERD DIAGRAM:
- https://github.com/sreeepotluri/UserInterface-Project/files/8885519/SOCIO.FACTS.ERD.pdf
+ 
