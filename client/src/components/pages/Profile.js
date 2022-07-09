@@ -89,11 +89,11 @@ const Profile = () => {
           <div className="row justify-content-md-center">
             <div className="col-md-10 cl-sm-12 col-lg-7">
             <div className="card1 card-heder-custom" >    
-            <h2> <b className="custom-card-title">Signed in as {location.state.name}</b></h2>
+            <h2> <b className="custom-card-title">Logged in as {location.state.name}</b></h2>
             <h4> <b className="custom-card-title">Post</b></h4>
             <form onSubmit={onSubmit}>
             <div className="form-group mb-3">
-              <label htmlFor="Username">Title</label>
+              <label htmlFor="Username">Post Subject</label>
               <input
                 className="form-control"
                 autoFocus
@@ -104,7 +104,7 @@ const Profile = () => {
               />
             </div>
             <div className="form-group mb-3">
-              <label htmlFor="Password">content</label>
+              <label htmlFor="Password">Status</label>
               <input
                 className="form-control"
                 type="text"
@@ -114,7 +114,7 @@ const Profile = () => {
               />
             </div>
             <button type="submit" className="newp">
-              save
+              Generate Post
             </button>
           </form>
               </div>
@@ -127,7 +127,7 @@ const Profile = () => {
               <div className="card1 card-heder-custom" >
                 <h4> <b className="custom-card-title">{post.posttitle}</b></h4>
                 <p> {post.postcontent}</p>
-                <button onClick={e=> delPost(e,post)}class="newp">Delete</button>
+                <button onClick={e=> delPost(e,post)}class="newp">Obilerate Post</button>
               </div>
             </div>
           </div>

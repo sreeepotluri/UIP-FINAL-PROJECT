@@ -33,7 +33,7 @@ const Navbar = () => {
                         <Link className="nav-link" to="/profile">Profile</Link>
                       </li>
                       <li className="nav-item">
-                      <Link className="nav-link" to="/Login">Logout</Link>
+                      <Link className="nav-link" to="/Login">Sign Out/Sign In</Link>
                     </li>
                     </>
                       
@@ -41,8 +41,8 @@ const Navbar = () => {
                       {location.pathname !="/profile" &&
                         <>
                           <Link className="nav-link active" to="/Brands">Home</Link>
-                          <Link className="nav-link" to="/Register">Register</Link>
-                          <Link className="nav-link" to="/Login">Login</Link>
+                          <Link className="nav-link" to="/Register">Sign Up</Link>
+                          <Link className="nav-link" to="/Login">Sign In</Link>
                         </>
                       }
                       

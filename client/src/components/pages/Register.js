@@ -43,7 +43,7 @@ const Register = () => {
       <div className="row justify-content-md-center">
         <div className="col-md-6 cl-sm-12 col-lg-4 mt-7">
           <div className="card1 card-heder-custom" >
-            <h2> <b className="custom-card-title">Register Here</b></h2>
+            <h2> <b className="custom-card-title">Sign Up </b></h2>
             <form onSubmit={onSubmit}>
                 <div className="form-group mb-3">
                     <label className="form-label" htmlFor="Name">Enter Name</label>
@@ -97,7 +97,7 @@ const Register = () => {
                         required
                     />
                 </div>
-                <button type="submit" className="newp">Register</button>
+                <button type="submit" className="newp">Sign Up</button>
               </form> 
           </div>
         </div>

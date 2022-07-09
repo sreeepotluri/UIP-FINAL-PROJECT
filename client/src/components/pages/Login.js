@@ -53,7 +53,7 @@ const Login = () => {
       <div className="row justify-content-md-center">
         <div className="col-md-6 cl-sm-12 col-lg-4 mt-7">
           <div className="card1 card-heder-custom" >
-            <h2> <b className="custom-card-title">Sign In Here</b></h2>
+            <h2> <b className="custom-card-title">Sign In </b></h2>
             <form onSubmit={handleSubmit}>
               <div className="form-group mb-3">
                 <label htmlFor="username">Enter Username</label>
@@ -76,7 +76,7 @@ const Login = () => {
                   onChange={onChange}
                 />
               </div>
-              <button type="submit" className="newp">Submit</button>
+              <button type="submit" className="newp">Sign In</button>
             </form>
           </div>
         </div>
