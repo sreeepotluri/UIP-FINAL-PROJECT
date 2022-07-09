@@ -11,4 +11,5 @@ ENTITIES: Entities in this website are USER ,MESSAGES, POSTS and GROUPS. Each an
 
 ERD DIAGRAM:
  
-[SOCIO.FACTS.ERD (1).pdf](https://github.com/sreeepotluri/Social-media-app/files/9072566/SOCIO.FACTS.ERD.1.pdf)
+[SOCIO FACTS ERD.pdf](https://github.com/sreeepotluri/UIP-FINAL-PROJECT/files/9075805/SOCIO.FACTS.ERD.pdf)
+
