@@ -7,19 +7,19 @@ const Profile = () => {
 
   const location = useLocation();
   const navigate = useNavigate();
-  const [post, setPost] = useState({posttitle: '', postcontent: ''
+  const [post, setPost] = useState({postsubject: '', poststatus: ''
   });
 
-  const { posttitle, postcontent } = post;
+  const { postsubject, poststatus } = post;
     const onChange = (e) => setPost({ ...post, [e.target.name]: e.target.value })
     const onSubmit = (e) => {
         e.preventDefault();
         console.log('submitted');
         const userid = location.state.name;
-        fetchData("/post/create",
+        fetchData("/post/generate",
             {
-              posttitle,
-              postcontent,
+              postsubject,
+              poststatus,
               userid
             },
             "POST")
@@ -27,10 +27,10 @@ const Profile = () => {
                 if (!data.message) {
                     console.log(data)
                     setPost({
-                      posttitle: '',
-                        postcontent: ''
+                      postsubject: '',
+                      poststatus: ''
                     });
-                    fetchData("/post/readposts",
+                    fetchData("/post/viewposts",
                         {
                           userid
                         },
@@ -55,7 +55,7 @@ const Profile = () => {
     const delPost = async (e,post) => {
       e.preventDefault();
       const userid = location.state.name;
-      fetchData("/post/delete",
+      fetchData("/post/remove",
           {
               id: post._id
           },
@@ -63,7 +63,7 @@ const Profile = () => {
           .then((data) => {
               if (!data.message) {
                   console.log(data)
-                  fetchData("/post/readposts",
+                  fetchData("/post/viewposts",
                       {
                         userid
                       },
@@ -97,20 +97,20 @@ const Profile = () => {
               <input
                 className="form-control"
                 autoFocus
-                name='posttitle'
+                name='postsubject'
                 type="text"
                 onChange={onChange}
-                value={posttitle}
+                value={postsubject}
               />
             </div>
             <div className="form-group mb-3">
-              <label htmlFor="Password">Status</label>
+              <label htmlFor="Password">Post Status</label>
               <input
                 className="form-control"
                 type="text"
-                name='postcontent'
+                name='poststatus'
                 onChange={onChange}
-                  value={postcontent}
+                  value={poststatus}
               />
             </div>
             <button type="submit" className="newp">
@@ -125,8 +125,8 @@ const Profile = () => {
           <div className="row justify-content-md-center">
             <div className="col-md-10 cl-sm-12 col-lg-7">
               <div className="card1 card-heder-custom" >
-                <h4> <b className="custom-card-title">{post.posttitle}</b></h4>
-                <p> {post.postcontent}</p>
+                <h4> <b className="custom-card-title">{post.postsubject}</b></h4>
+                <p> {post.poststatus}</p>
                 <button onClick={e=> delPost(e,post)}class="newp">Obilerate Post</button>
               </div>
             </div>

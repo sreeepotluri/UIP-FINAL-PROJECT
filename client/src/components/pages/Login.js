@@ -1,89 +1,72 @@
 import { fetchData } from "../../main.js";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import UserContext from "../../context/userContext.js";
+import axios from "axios";
+import Profile from "./Profile";
 
 const Login = () => {
-  const navigate = useNavigate();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const nav = useNavigate();
 
-  const [user, setUser] = useState({
-    username: '',
-    password: ''
-  });
-
-  const { username, password } = user;
-
-  const onChange = (e) => setUser({ ...user, [e.target.name]: e.target.value })
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    fetchData("/user/login",
-      {
-        username,
-        password
-      },
-      "POST")
-      .then((data) => {
-        console.log(data);
-        if (!data.message) {
-          var userid = username;
-          fetchData("/post/readposts",
-            {userid},
-            "POST"
-            )
-            .then((res) => {
-              console.log(res);
-              if (!res.message) {
-                navigate("/profile", { state: { name: username, data: res } });
-              }
-            })
-            .catch((error) => {
-              console.log(error)
-            })
-        }
-      })
-      .catch((error) => {
-        console.log(error)
-      })
-
+  function validateForm() {
+    return username.length > 0 && password.length > 0;
   }
 
-  return (
+  function handleSubmit(event) {
+    event.preventDefault();
+    console.log(username, password);
 
-    <div className="container">
-      <div className="row justify-content-md-center">
-        <div className="col-md-6 cl-sm-12 col-lg-4 mt-7">
-          <div className="card1 card-heder-custom" >
-            <h2> <b className="custom-card-title">Sign In </b></h2>
-            <form onSubmit={handleSubmit}>
-              <div className="form-group mb-3">
-                <label htmlFor="username">Enter Username</label>
-                <input
-                  className="form-control" 
-                  autoFocus
-                  type="username"
-                  name="username"
-                  value={username}
-                  onChange={onChange}
-                />
-              </div>
-              <div className="form-group mb-3">
-                <label htmlFor="Password">Enter Password</label>
-                <input
-                  className="form-control" 
-                  type="password"
-                  name="password"
-                  value={password}
-                  onChange={onChange}
-                />
-              </div>
-              <button type="submit" className="newp">Sign In</button>
-            </form>
-          </div>
+    axios
+      .post(
+        "/user/login",
+        {
+          username: username, //sreeepotluri
+          password: password, //pancakes
+        },
+        {
+          Accept: "application/json",
+          "Content-Type": "application/json;charset=UTF-8",
+        }
+      )
+      .then((response) => {
+        console.log(response);
+        nav("/Profile");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+  return (
+    <div className="Login">
+       <h2>SIGN IN</h2>
+      <form onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label htmlFor="Username">Enter Username</label>
+          <input
+            className="form-control"
+            autoFocus
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
         </div>
-      </div>
+        <div className="form-group">
+          <label htmlFor="Password">Enter Password</label>
+          <input
+            className="form-control"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
+        <button type="submit" className="btn btn-primary">
+          SIGN IN
+        </button>
+      </form>
     </div>
-    
   );
-}
+};
 
 export default Login;

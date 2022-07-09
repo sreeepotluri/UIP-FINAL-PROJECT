@@ -1,65 +1,59 @@
 import { fetchData } from "../../main.js";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
-
+import { useContext } from "react";
+import UserContext from "../../context/userContext.js";
+import axios from "axios"
+import Profile from "./Profile";
 
 const Register = () => {
     const navigate = useNavigate();
+    const { user, updateUser } = useContext(UserContext);
+    
 
-  const [user, setUser] = useState({
-    Username: '',
-    Name: '',
-    Password: '',
-    ConfirmPassword: ''
-  });
-  const { Username, Name, Password, ConfirmPassword  } = user;
+    const {FullName, Username, Password, ConfirmPassword} = user;
 
-  const onChange = (e) => setUser({ ...user, [e.target.name]: e.target.value })
+    const onChange = (e) =>updateUser(e.target.name, e.target.value);
 
-  const onSubmit = (e) => {
-    e.preventDefault();
-    fetchData("/user/register",
-      {
-        Username,
-        Name,
-        Password
-      },
-      "POST")
-      .then((data) => {
-        if (!data.message) {
-          console.log(data)
-          navigate("/login")
-        }
-      })
-      .catch((error) => {
-        console.log(error)
-      })
+    const onSubmit = (e) => { 
+        e.preventDefault();
 
-  }
+        console.log(user)
+        axios.post("/user/register", user, { 
+            'Accept': 'application/json',
+            'Content-Type': 'application/json;charset=UTF-8'
+        })
+        .then((response) => {
+            
+            console.log(response);
+            if(response.data._id) {
+                
+                navigate("/Login");
+            }
+        })  
+        .catch((error) => {
+            console.log(error)
+        })
+    }
 
-    return (
-
-<div className="container">
-      <div className="row justify-content-md-center">
-        <div className="col-md-6 cl-sm-12 col-lg-4 mt-7">
-          <div className="card1 card-heder-custom" >
-            <h2> <b className="custom-card-title">Sign Up </b></h2>
+     return (
+        <div>
+            <h2>SIGN UP</h2>
             <form onSubmit={onSubmit}>
-                <div className="form-group mb-3">
-                    <label className="form-label" htmlFor="Name">Enter Name</label>
+                <div className="form-group">
+                    <label className="form-label" htmlFor="FullName">Enter FullName</label>
                     <input 
                         type="text" 
-                        id="Name" 
-                        name="Name" 
+                        id="FullName" 
+                        name="FullName" 
                         className="form-control" 
-                        placeholder="Enter Name" 
+                        placeholder="Enter FullName" 
                         onChange={onChange} 
-                        value={Name} 
+                        value={FullName} 
                         required 
                     />
                 </div>
-                <div className="form-group mb-3">
-                    <label htmlFor="Username"> Enter Username</label>
+                <div className="form-group">
+                    <label htmlFor="Username">Enter Username</label>
                     <input 
                         type="text" 
                         className="form-control" 
@@ -71,7 +65,7 @@ const Register = () => {
                         required 
                     />
                 </div>
-                <div className="form-group mb-3">
+                <div className="form-group">
                     <label htmlFor="Password">Enter Password</label>
                     <input 
                         type="password" 
@@ -84,26 +78,23 @@ const Register = () => {
                         required  
                     />
                 </div>
-                <div className="form-group mb-3">
-                    <label className="form-label" htmlFor="ConfirmPassword">Re-Enter password</label>
+                <div className="form-group">
+                    <label className="form-label" htmlFor="ConfirmPassword">Confirm password</label>
                     <input
                         type="password" 
                         id="ConfirmPassword" 
                         name="ConfirmPassword" 
                         className="form-control" 
-                        placeholder="Re-Enter Password" 
+                        placeholder="Enter Password for Confirmation" 
                         onChange={onChange} 
                         value={ConfirmPassword}
                         required
                     />
                 </div>
-                <button type="submit" className="newp">Sign Up</button>
-              </form> 
-          </div>
+  
+                <button type="submit" className="btn btn-primary">SIGN UP</button>
+            </form> 
         </div>
-      </div>
-    </div>
-
 
     );
 }
