@@ -5,7 +5,7 @@ const router = express.Router();
 
 // 2. create all routes to access database
 router
-.post('/readposts', async (req, res) => {
+.post('/viewposts', async (req, res) => {
   try {
     const posts = await Post.read(req.body.userid);
     res.send(posts);
@@ -16,8 +16,8 @@ router
 
   .post('/create', async (req, res) => {
     try {  
-      const post = await Post.create(req.body.userid, req.body.posttitle, req.body.postcontent);
-      res.send({success:"post saved"});
+      const post = await Post.create(req.body.userid, req.body.postsubject, req.body.poststatus);
+      res.send({success:"post Generated"});
     } catch(error) {
       res.status(401).send({ message: error.message }); 
     }
@@ -35,7 +35,7 @@ router
   .delete('/delete', async (req, res) => {
     try {
       const post = await Post.deletePost(req.body.id);
-      res.send({ success: "Post deleted" });
+      res.send({ success: "Post Obilerated" });
     } catch(error) {
       res.status(401).send({ message: error.message });
     }

@@ -4,8 +4,8 @@ const mongoose = require("mongoose");
 // 2. create schema for entity
 // 2. create schema for entity
 const postSchema = new mongoose.Schema({
-  posttitle: { type: String, required: true},
-  postcontent: { type: String, required: true},
+  postsubject: { type: String, required: true},
+  poststatus: { type: String, required: true},
   userid: { type: String, required: true}
 })
 
@@ -14,26 +14,26 @@ const Post = mongoose.model("Post", postSchema);
 
 // // 4. create CRUD functions on model
 // //CREATE a post
-async function create(userid,posttitle, postcontent) {
+async function create(userid,postsubject, poststatus) {
 
   const newPost = await Post.create({
     postid: userid,
-    posttitle: posttitle,
-    postcontent: postcontent,
+    postsubject: postsubject,
+    poststatus: poststatus,
     userid: userid
   });
   return newPost;
 }
 
-// // READ a post
+// // View a post
 async function read(userid) {
   const post = await Post.find({"userid": userid});
   return post;
 }
 
 // // UPDATE
-async function updatePost(id, posttitle, postcontent) {
-  const post = await Post.updateOne({"_id": id}, {$set: { posttitle: posttitle, postcontent: postcontent }});
+async function updatePost(id, postsubject, poststatus) {
+  const post = await Post.updateOne({"_id": id}, {$set: { postsubject: postsubject, poststatus: poststatus }});
   return post;
 }
 
